@@ -130,14 +130,9 @@ app.use(
 );
 
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${
-      process.env.MONGO_PASSWORD
-    }@cluster0-6pjdi.mongodb.net/${
-      process.env.MONGO_DB
-    }?retryWrites=true&w=majority`,
-    { useNewUrlParser: true }
-  )
+  .connect('mongodb://127.0.0.1:27017/events-react-dev', {
+    useNewUrlParser: true
+  })
   .then(() => {
     app.listen(3000, () => {
       console.log('SERVER STARTED');

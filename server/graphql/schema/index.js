@@ -26,7 +26,6 @@ module.exports = buildSchema(`
     }
 
     input EventInput {
-      _id: ID
       title: String!
       description: String!
       price: Float!

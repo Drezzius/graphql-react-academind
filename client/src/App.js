@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import './App.css';
-import AuthPage from './components/AuthPage';
-import EventsPage from './components/EventsPage';
-import BookingsPage from './components/BookingsPage';
+import AuthPage from './pages/AuthPage';
+import EventsPage from './pages/EventsPage';
+import BookingsPage from './pages/BookingsPage';
 
 const App = () => {
   return (

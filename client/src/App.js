@@ -15,12 +15,13 @@ const App = () => {
       <MainNavigation />
       <main className="main-content">
         <Switch>
-          {!token && <Redirect from="/" exact to="/auth" />}
+          {!token && <Redirect from="/bookings" exact to="/auth" />}
           {token && <Redirect from="/" exact to="/events" />}
           {token && <Redirect from="/auth" exact to="/events" />}
           {!token && <Route path="/auth" exact component={AuthPage} />}
           <Route path="/events" exact component={EventsPage} />
           {token && <Route path="/bookings" exact component={BookingsPage} />}
+          {!token && <Redirect exact to="/auth" />}
         </Switch>
       </main>
     </BrowserRouter>

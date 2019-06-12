@@ -8,7 +8,7 @@ const AuthPage = () => {
   const [email, setEmail] = useInputState('');
   const [password, setPassword] = useInputState('');
   const [isLogin, setIsLogin] = useState(true);
-  const { token, login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const handleSetLogin = () => setIsLogin(!isLogin);
 

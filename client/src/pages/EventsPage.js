@@ -4,7 +4,7 @@ import Modal from '../components/Modal/Modal';
 import Backdrop from '../components/Backdrop/Backdrop';
 import { useInputState } from '../hooks/useInputState';
 import { AuthContext } from '../context/auth-context';
-import EventList from '../components/EventList/EventList';
+import EventList from '../components/Events/EventList/EventList';
 import { EventsContext } from '../context/events-context';
 import Spinner from '../components/Spinner/Spinner';
 

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import './Event.css';
-import { AuthContext } from '../context/auth-context';
+import './EventItem.css';
+import { AuthContext } from '../../../context/auth-context';
 
-const Event = props => {
+const EventItem = props => {
   const { userId } = useContext(AuthContext);
   const { _id, title, price, date } = props.event;
 
@@ -30,4 +30,4 @@ const Event = props => {
   );
 };
 
-export default Event;
+export default EventItem;

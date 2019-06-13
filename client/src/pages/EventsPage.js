@@ -4,13 +4,15 @@ import Modal from '../components/Modal/Modal';
 import Backdrop from '../components/Backdrop/Backdrop';
 import { useInputState } from '../hooks/useInputState';
 import { AuthContext } from '../context/auth-context';
-import EventList from './EventList';
+import EventList from '../components/EventList/EventList';
 import { EventsContext } from '../context/events-context';
 import Spinner from '../components/Spinner/Spinner';
 
 const EventsPage = () => {
   const { token } = useContext(AuthContext);
-  const { createEvent, events, isLoading } = useContext(EventsContext);
+  const { createEvent, events, isLoading, bookEvent } = useContext(
+    EventsContext
+  );
   const [creating, setCreating] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
@@ -48,8 +50,13 @@ const EventsPage = () => {
     setSelectedEvent(selectedEvent);
   };
 
-  const bookEventHandler = () => {
-    console.log('hey');
+  const bookEventHandler = e => {
+    if (!token) {
+      setSelectedEvent(null);
+      return;
+    }
+    bookEvent(selectedEvent._id, token);
+    setSelectedEvent(null);
   };
 
   return (
@@ -104,7 +111,7 @@ const EventsPage = () => {
           title={selectedEvent.title}
           onCancel={cancelEventHandler}
           onConfirm={bookEventHandler}
-          confirmText="Book"
+          confirmText={token ? 'Book' : 'Confirm'}
           canCancel
           canConfirm
         >

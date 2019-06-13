@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { EventsProvider } from './events-context';
 
 export const AuthContext = createContext();
 
@@ -22,7 +23,7 @@ export const AuthProvider = props => {
     <AuthContext.Provider
       value={{ token, userId, tokenExpiration, login, logout }}
     >
-      {props.children}
+      <EventsProvider>{props.children}</EventsProvider>
     </AuthContext.Provider>
   );
 };

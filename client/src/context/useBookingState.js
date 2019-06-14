@@ -69,5 +69,34 @@ export const useBookingState = () => {
     setBookings(res.data.data.bookings);
     setIsLoading(false);
   };
-  return [bookEvent, fetchBookings, bookings];
+
+  const cancelBooking = async (token, id) => {
+    const requestBody = {
+      query: `
+        mutation {
+          cancelBooking(bookingId: "${id}")
+          {
+            _id
+           title
+          }
+        }
+      `
+    };
+
+    const res = await axios({
+      method: 'post',
+      url: 'http://localhost:8000/graphql',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      data: JSON.stringify(requestBody)
+    });
+    if (res.status !== 200 && res.status !== 201) {
+      throw new Error('Failed!');
+    }
+    const updatedBookings = bookings.filter(booking => booking._id !== id);
+    setBookings(updatedBookings);
+  };
+  return [bookEvent, fetchBookings, bookings, cancelBooking];
 };

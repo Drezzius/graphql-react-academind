@@ -7,7 +7,9 @@ export const EventsContext = createContext();
 
 export const EventsProvider = props => {
   const [isLoading] = useIsLoadingState(false);
-  const [bookEvent, fetchBookings, bookings] = useBookingState([]);
+  const [bookEvent, fetchBookings, bookings, cancelBooking] = useBookingState(
+    []
+  );
   const [events, fetchEvents, createEvent] = useFetchEventsState();
 
   useEffect(() => {
@@ -22,7 +24,8 @@ export const EventsProvider = props => {
         isLoading,
         bookEvent,
         fetchBookings,
-        bookings
+        bookings,
+        cancelBooking
       }}
     >
       {props.children}

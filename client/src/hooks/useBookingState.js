@@ -9,15 +9,18 @@ export const useBookingState = () => {
   const bookEvent = async (eventId, token) => {
     const requestBody = {
       query: `
-        mutation {
-          bookEvent(eventId: "${eventId}")
+        mutation BookEvent($eventId: ID!){
+          bookEvent(eventId: $eventId)
           {
             _id
             createdAt
             updatedAt
             }
           }
-      `
+      `,
+      variables: {
+        eventId
+      }
     };
 
     const res = await axios({
@@ -73,14 +76,17 @@ export const useBookingState = () => {
   const cancelBooking = async (token, id) => {
     const requestBody = {
       query: `
-        mutation {
-          cancelBooking(bookingId: "${id}")
+        mutation CancelBooking($id: ID!) {
+          cancelBooking(bookingId: $id)
           {
             _id
            title
           }
         }
-      `
+      `,
+      variables: {
+        id
+      }
     };
 
     const res = await axios({

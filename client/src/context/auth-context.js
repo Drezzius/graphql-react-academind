@@ -1,27 +1,22 @@
-import React, { useState, createContext } from 'react';
+import React, { createContext } from 'react';
 import { EventsProvider } from './events-context';
+import { useAuthState } from '../hooks/useAuthState';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = props => {
-  const [token, setToken] = useState(null);
-  const [userId, setUserId] = useState(null);
-  const [tokenExpiration, setTokenExpiration] = useState(null);
-
-  const login = (token, userId, tokenExpiration) => {
-    setToken(token);
-    setUserId(userId);
-    setTokenExpiration(tokenExpiration);
-  };
-
-  const logout = () => {
-    setToken(null);
-    setUserId(null);
-  };
+  const [
+    token,
+    userId,
+    tokenExpiration,
+    login,
+    logout,
+    authenticate
+  ] = useAuthState();
 
   return (
     <AuthContext.Provider
-      value={{ token, userId, tokenExpiration, login, logout }}
+      value={{ token, userId, tokenExpiration, login, logout, authenticate }}
     >
       <EventsProvider>{props.children}</EventsProvider>
     </AuthContext.Provider>

@@ -131,11 +131,7 @@ const EventsPage = () => {
           </button>
         </div>
       )}
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <EventList events={events} onViewDetail={showDetailHandler} />
-      )}
+      {isLoading ? <Spinner /> : <EventList onViewDetail={showDetailHandler} />}
     </>
   );
 };

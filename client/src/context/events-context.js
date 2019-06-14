@@ -1,7 +1,7 @@
-import React, { useEffect, createContext } from 'react';
-import { useFetchEventsState } from './useFetchState';
-import { useBookingState } from './useBookingState';
-import { useIsLoadingState } from './useIsLoadingState';
+import React, { createContext } from 'react';
+import { useFetchEventsState } from '../hooks/useFetchState';
+import { useBookingState } from '../hooks/useBookingState';
+import { useIsLoadingState } from '../hooks/useIsLoadingState';
 
 export const EventsContext = createContext();
 
@@ -12,14 +12,11 @@ export const EventsProvider = props => {
   );
   const [events, fetchEvents, createEvent] = useFetchEventsState();
 
-  useEffect(() => {
-    fetchEvents();
-  }, []);
-
   return (
     <EventsContext.Provider
       value={{
         events,
+        fetchEvents,
         createEvent,
         isLoading,
         bookEvent,

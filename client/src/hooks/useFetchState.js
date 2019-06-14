@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import axios from 'axios';
-import { AuthContext } from './auth-context';
+import { AuthContext } from '../context/auth-context';
 import { useIsLoadingState } from './useIsLoadingState';
 
 export const useFetchEventsState = () => {
